@@ -1,0 +1,29 @@
+@{foreach(var kid in ViewBag.singleKid){
+    <h1>@kid.FirstName @kid.LastName</h1>
+    <h3>Birthdate: @kid.Birthdate.ToShortDateString()</h3>
+    <h3>Teacher: @kid.Teacher.Prefix @kid.Teacher.LastName</h3>
+}}
+@{if(ViewBag.assessmentsTaken.Count > 0){
+    <table id="asstHistoryTable">
+        <tr>
+            <th>Assessment</th>
+            <th>Date Taken</th>
+            <th>Score</th>
+            <th>Progress?</th>
+            <th>Comment</th>
+        </tr>
+        @foreach(var taken in @ViewBag.assessmentsTaken){
+            <tr>
+                <td>@taken.Assessment.Name</td>
+                <td>@taken.Date.ToShortDateString()</td>
+                <td>@taken.Score</td>
+                <td>@taken.Progress</td>
+                <td>@taken.Comment</td>
+            </tr>
+        }
+    </table>
+}}
+@{if(ViewBag.assessmentsTaken.Count == 0){
+    <p>No assessments taken yet.</p>
+}}
+<a href="/viewAllKids">Go Back</a>

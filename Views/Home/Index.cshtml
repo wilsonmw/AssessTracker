@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Assessment Tracker Login";
+}
+<h1>Welcome to the Assessment Tracker. Please log in below. If you do not have a login, please register.</h1>
+<h3>Login:</h3>
+@ViewBag.LoginError
+<form action="login" method = "post">
+    Email:<input type="text" name="email">
+    Password:<input type="text" name="password">
+    <input type="submit" value="Log In">
+</form>
+
+<h3>Register</h3>
+<form action="register" method="post">
+    First Name: <input type="text" name="firstName">
+    Last Name: <input type="text" name="lastName">
+    Email Address: <input type="email" name="email">
+    Organization: <input type="text" name="organization">
+    Password: <input type="text" name="password">
+    Confirm Password: <input type="text" name="pwConfirm">
+</form>
+

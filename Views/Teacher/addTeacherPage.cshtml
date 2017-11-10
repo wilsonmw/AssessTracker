@@ -1,0 +1,29 @@
+@model AssessTracker.Models.TeacherViewModel
+
+<h1>Add a Teacher</h1>
+<h3>@ViewBag.addTeacherError</h3>
+<form asp-controller="Teacher" asp-action="addTeacher" method="post">
+    
+    Prefix: <select name="prefix">
+        <option value="Mrs">Mrs</option>
+        <option value="Ms">Ms</option>
+        <option value="Miss">Miss</option>
+        <option value="Mr">Mr</option>
+    </select>
+
+    <span asp-validation-for="FirstName"></span>
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName">
+    
+    <span asp-validation-for="LastName"></span>
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName">
+    
+    <span asp-validation-for="GradeLevel"></span>
+    <label asp-for="GradeLevel"></label>
+    <input asp-for="GradeLevel">
+    
+    <input type="submit" value="Add Teacher">
+</form>
+
+<a href="dashboard">Cancel</a>

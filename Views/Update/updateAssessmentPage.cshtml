@@ -1,0 +1,59 @@
+@model AssessTracker.Models.DateTakenViewModel
+
+<h1>@ViewBag.singleKid[0].FirstName @ViewBag.singleKid[0].LastName</h1>
+<h3>@ViewBag.singleKid[0].Birthdate.ToShortDateString()</h3>
+<h3>@ViewBag.years years, @ViewBag.months months old</h3>
+
+@{if(ViewBag.assessmentsTaken.Count == 0){
+    <p>No assessments taken yet.</p>
+}
+
+@if(ViewBag.assessmentsTaken.Count > 0){
+    <table id="asstHistoryTable">
+        <tr>
+            <th>Assessment</th>
+            <th>Date Taken</th>
+            <th>Score</th>
+            <th>Progress?</th>
+            <th>Comment</th>
+        </tr>
+        @foreach(var taken in @ViewBag.assessmentsTaken){
+            <tr>
+                <td>@taken.Assessment.Name</td>
+                <td>@taken.Date.ToShortDateString()</td>
+                <td>@taken.Score</td>
+                <td>@taken.Progress</td>
+                <td>@taken.Comment</td>
+            </tr>
+        }
+    </table>
+}
+}
+<br>
+<h3>Add new assessment for @ViewBag.singleKid[0].FirstName:</h3>
+<form asp-controller="Update" asp-action="updateAssessments" method="post" name="addAsstForm">
+    Assessment: <select name="Asst">
+        @{foreach(var asst in @ViewBag.assessments){
+            <option value="@asst.Name">@asst.Name</option>
+        }}
+    </select>
+
+    <span asp-validation-for="Date"></span>
+    <label asp-for="Date"></label>
+    <input type="date" name="Date">
+
+    <span asp-validation-for="Score"></span>
+    <label asp-for="Score"></label>
+    <input asp-for="Score">
+
+    Progress: <select name="Progress">
+        <option value="N/A">N/A</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <textarea name="Comment" rows="1" cols="35" placeholder="Comment"></textarea>
+    <input type="submit" value="Submit">
+</form>
+<a href="/updateAllKids">Go Back</a>
+

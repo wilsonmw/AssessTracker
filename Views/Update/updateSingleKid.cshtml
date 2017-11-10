@@ -1,0 +1,31 @@
+@model AssessTracker.Models.KidViewModel
+
+<h1>Update info for @ViewBag.kid[0].FirstName @ViewBag.kid[0].LastName</h1>
+
+<form asp-controller="Update" asp-action="updateSingleKid" method="post">
+    
+    <span asp-validation-for="FirstName"></span>
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" value="@ViewBag.kid[0].FirstName">
+    
+    <span asp-validation-for="LastName"></span>
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" value="@ViewBag.kid[0].LastName">
+    
+    <span asp-validation-for="Birthdate"></span>
+    <label asp-for="Birthdate"></label>
+    <input type="date" name="Birthdate" value="@ViewBag.kid[0].Birthdate.ToShortDateString()">
+    
+    Teacher: <select name="teacher">
+        @{foreach(var teacher in ViewBag.teachers){
+            @if(teacher.LastName == @ViewBag.kid[0].Teacher.LastName){
+                <option value="@teacher.LastName" selected="selected">@teacher.Prefix @teacher.LastName</option>
+            }
+            @if(teacher.LastName != @ViewBag.kid[0].Teacher.LastName){
+            <option value="@teacher.LastName">@teacher.Prefix @teacher.LastName</option>
+            }
+        }}
+        </select>
+    <input type="submit" value="Update Child">
+</form>
+<a href="/updateAllKids">Cancel</a>

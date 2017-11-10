@@ -1,0 +1,35 @@
+<table id="kidTable">
+    <tr>
+        <th><a href="/viewAllKids/sortFirst">First Name</a></th>
+        <th><a href="/viewAllKids/sortLast">Last Name</a></th>
+        <th><a href="/viewAllKids/sortBirthdate">Birthdate</a></th>
+        <th>Age</th>
+        <th><a href="/viewAllKids/sortTeacher">Teacher</a></th>
+        <th><a href="/viewAllKids/sortStatus">Status</a></th>
+    </tr>
+    @{foreach(var kid in ViewBag.allKids){
+        <tr>
+            <td><a href="viewSingleKid/@kid.id">@kid.FirstName</a></td>
+            <td>@kid.LastName</td>
+            <td>@kid.Birthdate.ToShortDateString()</td>
+            @{TimeSpan age = DateTime.Now - kid.Birthdate;}
+            @{double decimalYears = age.TotalDays/365;}
+            @{var years = Math.Truncate(decimalYears);}
+            @{double decimalMonths = (age.TotalDays % 365)/30;}
+            @{var months = Convert.ToInt32(decimalMonths);}
+            @{if(months==12){
+                months=11;
+            }}
+            <td>@years years, @months months</td>
+            <td>@kid.Teacher.Prefix @kid.Teacher.LastName</td>
+            @{if(kid.Active == true){
+                <td>Active</td>
+            }
+            @if(kid.Active == false){
+                <td>Inactive</td>
+            }
+        }
+        </tr>
+    }}
+</table>
+<a href="/dashboard">Go Back</a>

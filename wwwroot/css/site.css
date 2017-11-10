@@ -1,0 +1,77 @@
+/*Write all of your CSS here*/
+
+.navLinks{
+    margin: 1%;
+}
+
+#kidTable{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+    width: 80%;
+}
+
+#kidTable th{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+}
+#kidTable tr{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+}
+#kidTable td{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+}
+
+#updateKidTable{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+    width: 85%;
+}
+
+#updateKidTable th{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+}
+#updateKidTable tr{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+}
+#updateKidTable td{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+}
+
+tr:nth-child(even){
+    background: lightgray;
+}
+
+#asstHistoryTable{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+    width: 60%;
+}
+#asstHistoryTable th{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+}
+#asstHistoryTable tr{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+}
+#asstHistoryTable td{
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 1%;
+}

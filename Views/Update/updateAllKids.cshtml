@@ -1,0 +1,44 @@
+<table id="updateKidTable">
+    <tr>
+        <th><a href="/updateAllKids/sortFirst">First Name</a></th>
+        <th><a href="/updateAllKids/sortLast">Last Name</a></th>
+        <th><a href="/updateAllKids/sortBirthdate">Birthdate</a></th>
+        <th>Age</th>
+        <th><a href="/updateAllKids/sortTeacher">Teacher</a></th>
+        <th><a href="/updateAllKids/sortStatus">Status</a></th>
+        <th>Update Asst. Info</th>
+        <th>Change Status</th>
+    </tr>
+    @{foreach(var kid in ViewBag.allKids){
+        <tr>
+            <td><a href="updateSingleKidPage/@kid.id">@kid.FirstName</a></td>
+            <td>@kid.LastName</td>
+            <td>@kid.Birthdate.ToShortDateString()</td>
+            @{TimeSpan age = DateTime.Now - kid.Birthdate;}
+            @{double decimalYears = age.TotalDays/365;}
+            @{var years = Math.Truncate(decimalYears);}
+            @{double decimalMonths = (age.TotalDays % 365)/30;}
+            @{var months = Convert.ToInt32(decimalMonths);}
+            @{if(months==12){
+                months=11;
+            }}
+            <td>@years years, @months months</td>
+            <td>@kid.Teacher.Prefix @kid.Teacher.LastName</td>
+            @{if(kid.Active == true){
+                <td>Active</td>
+            }
+            @if(kid.Active == false){
+                <td>Inactive</td>
+            }
+            <td><a href="updateAssessmentPage/@kid.id">Update</a></td>
+            @if(kid.Active == true){
+                <th><a href="/deactivateKid/@kid.id">Deactivate</a></th>
+            }
+            @if(kid.Active == false){
+                <th><a href="/activateKid/@kid.id">Activate</a></th>
+            }
+        }
+        </tr>
+    }}
+</table>
+<a href="/dashboard">Go Back</a>
