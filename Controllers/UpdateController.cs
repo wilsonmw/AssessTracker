@@ -76,16 +76,6 @@ namespace AssessTracker.Controllers
         }
 
         [HttpGet]
-        [Route("updateKidPage")]
-        public IActionResult updateKidPage(){
-            ViewBag.permission = HttpContext.Session.GetInt32("Permission");
-            if(ViewBag.permission != 9){
-                return RedirectToAction("dashboard", "Dashboard");
-            }
-            return RedirectToAction("updateAllKidsSortLast");
-        }
-
-        [HttpGet]
         [Route("deactivateKid/{id}")]
         public IActionResult deactivateKid(int id){
             Kid kid = _context.Kids.SingleOrDefault(x => x.id == id);
@@ -156,6 +146,7 @@ namespace AssessTracker.Controllers
                 KidId = kid.id
             };
             _context.DateTaken.Add(newDateTaken);
+            
             _context.SaveChanges();
             return RedirectToAction("updateAssessmentPage", new {id = HttpContext.Session.GetInt32("kidId")});
         }
@@ -187,5 +178,23 @@ namespace AssessTracker.Controllers
             _context.SaveChanges();
             return RedirectToAction("updateAllKids");
         }
+
+        [HttpGet]
+        [Route("deleteKidPage/{id}")]
+        public IActionResult deleteKidPage (int id){
+            Kid kid = _context.Kids.SingleOrDefault(x => x.id == id);
+            ViewBag.kid = kid;
+            return View("deleteKid");
+        }
+
+        [HttpGet]
+        [Route("deleteKid/{id}")]
+        public IActionResult deleteKid (int id){
+            Kid kid = _context.Kids.SingleOrDefault(x => x.id == id);
+            _context.Kids.Remove(kid);
+            _context.SaveChanges();
+            return RedirectToAction("updateAllKids");
+        }
+        
     }
 }

@@ -1,0 +1,31 @@
+<h1>Children due for a DECA Assessment in @ViewBag.month, @ViewBag.year:</h1>
+
+<table id="kidsDueTable">
+    <tr>
+        <th>Name</th>
+        <th>Most Recent DECA</th>
+        <th>Score</th>
+        <th>Progress?</th>
+        <th>Comment</th>
+    </tr>
+    @{foreach(var kid in @ViewBag.kidsDue){
+        <tr>
+            <td>@kid.Kid.FirstName @kid.Kid.LastName</td>
+            <td>@kid.Date</td>
+            <td>@kid.Score</td>
+            <td>@kid.Progress</td>
+            <td>@kid.Comment</td>
+        </tr>
+    }}
+    @{foreach(var kid in @ViewBag.noDecaKids){
+        <tr>
+            <td>@kid.FirstName @kid.LastName</td>
+            <td>No DECA Assessment Yet</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td></td>
+        </tr>
+    }}
+</table>
+
+<a href="/viewDueDecaPage">Go Back</a>

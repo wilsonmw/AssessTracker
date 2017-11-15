@@ -43,5 +43,85 @@ namespace AssessTracker.Controllers
             _context.SaveChanges();
             return RedirectToAction("dashboard", "Dashboard");
         }
+
+        [HttpGet]
+        [Route("viewDueDecaPage")]
+        public IActionResult viewDueDecaPage (){
+            return View("viewDueDecaPage");
+        }
+
+        [HttpPost]
+        [Route("viewDueDeca")]
+        public IActionResult viewDueDeca (int month, int year){
+            DateTime currentTime = DateTime.Now;
+            if(year < currentTime.Year){
+                year = currentTime.Year;
+            }
+            DateTime target = new DateTime(year, month, 15);
+            List<Kid> allKids = _context.Kids.OrderBy(n => n.LastName).ToList();
+            List<DateTaken> kidsDueDates = new List<DateTaken>();
+            foreach(var kid in allKids){
+                List<DateTaken> kidsDates = _context.DateTaken.Where(x => x.KidId == kid.id).Include(k => k.Kid).Include(a => a.Assessment).Where(p => p.Assessment.Name == "DECA").OrderByDescending(d => d.Date).ToList();
+                if(kidsDates.Count > 0){
+                    TimeSpan sinceRecentDeca = target - kidsDates[0].Date;
+                    if(sinceRecentDeca.TotalDays > 170){
+                        kidsDueDates.Add(kidsDates[0]);
+                    }
+                }
+            }
+            ViewBag.kidsDue = kidsDueDates;
+            List<Kid> allKidsNoDeca = _context.Kids.OrderBy(n => n.LastName).Include(d => d.DateTaken).ThenInclude(a => a.Assessment).ToList();
+            List<Kid> noDecaKids = new List<Kid>();
+            foreach(var kid in allKidsNoDeca){
+                int count = 0;
+                foreach(var asst in kid.DateTaken){
+                    if(asst.Assessment.Name == "DECA"){
+                        count += 1;
+                    }
+                }
+                if(count == 0){
+                    noDecaKids.Add(kid);
+                }
+            }
+            ViewBag.noDecaKids = noDecaKids;
+            ViewBag.year = year;
+            if(month == 1){
+                ViewBag.month = "January";
+            }
+            if(month == 2){
+                ViewBag.month = "February";
+            }
+            if(month == 3){
+                ViewBag.month = "March";
+            }
+            if(month == 4){
+                ViewBag.month = "April";
+            }
+            if(month == 5){
+                ViewBag.month = "May";
+            }
+            if(month == 6){
+                ViewBag.month = "June";
+            }
+            if(month == 7){
+                ViewBag.month = "July";
+            }
+            if(month == 8){
+                ViewBag.month = "August";
+            }
+            if(month == 9){
+                ViewBag.month = "September";
+            }
+            if(month == 10){
+                ViewBag.month = "October";
+            }
+            if(month == 11){
+                ViewBag.month = "November";
+            }
+            if(month == 12){
+                ViewBag.month = "December";
+            }
+            return View("kidsDuePage");
+        }
     }
 }

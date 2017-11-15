@@ -1,13 +1,13 @@
 <h1>Welcome back, @ViewBag.firstName.</h1>
 
-<a href="viewDue" class="navLinks">View Due Assessments</a>
-<a href="viewAllKids/sortLast" class="navLinks">View a Child</a>
+<a href="/viewDueDecaPage" class="navLinks">View Due DECA Assessments</a>
+<a href="/viewAllKids/sortLast" class="navLinks">View a Child</a>
 
 
 @if(ViewBag.permission == 9){
-    <a href="updateKidPage" class="navLinks">Update a Child</a>
-    <a href="addKidPage" class="navLinks">Add a Child</a>    
-    <a href="addTeacherPage" class="navLinks">Add a Teacher</a>
-    <a href="addAssessmentPage" class="navLinks">Add an Assessment</a>
-    <a href="grantAccess" class="navLinks">Grant User Access</a>
+    <a href="/updateAllKids/sortLast" class="navLinks">Update a Child</a>
+    <a href="/addKidPage" class="navLinks">Add a Child</a>    
+    <a href="/addTeacherPage" class="navLinks">Add a Teacher</a>
+    <a href="/addAssessmentPage" class="navLinks">Add an Assessment</a>
+    <a href="/grantAccess" class="navLinks">Grant User Access</a>
 }
