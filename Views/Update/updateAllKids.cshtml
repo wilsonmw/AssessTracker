@@ -37,7 +37,13 @@
             @if(kid.Active == false){
                 <td>Inactive</td>
             }
-            <td><a href="updateAssessmentPage/@kid.id">Update</a></td>
+            @if(kid.Active == true){
+                <td><a href="updateAssessmentPage/@kid.id">Update</a></td>
+            }
+            @if(kid.Active == false){
+                <td>N/A</td>
+            }
+
             @if(ViewBag.permission == 9){
                 @if(kid.Active == true){
                     <th><a href="/deactivateKid/@kid.id">Deactivate</a></th>

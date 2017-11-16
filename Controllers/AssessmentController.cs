@@ -54,6 +54,35 @@ namespace AssessTracker.Controllers
         }
 
         [HttpGet]
+        [Route("deleteAsstPage/{id}")]
+        public IActionResult deleteAsstPage(int id){
+            if(HttpContext.Session.GetInt32("Permission") < 9){
+                return RedirectToAction("updateAllKids");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
+            List<DateTaken> curAsst = _context.DateTaken.Where(x => x.id == id).Include(k => k.Kid).Include(a => a.Assessment).ToList();
+            ViewBag.assessment = curAsst[0];
+            return View("deleteAsstConfirm");
+        }
+
+        [HttpGet]
+        [Route("deleteAsst/{id}")]
+        public IActionResult deleteAsst(int id){
+            if(HttpContext.Session.GetInt32("Permission") < 9){
+                return RedirectToAction("updateAllKids");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
+            DateTaken deleteThisAsst = _context.DateTaken.SingleOrDefault(x => x.id == id);
+            _context.DateTaken.Remove(deleteThisAsst);
+            _context.SaveChanges();
+            return RedirectToAction("updateAssessmentPage", "Update", new {id = HttpContext.Session.GetInt32("kidId")});
+        }
+
+        [HttpGet]
         [Route("viewDueDecaPage")]
         public IActionResult viewDueDecaPage (){
             if(HttpContext.Session.GetInt32("Permission") == null){
@@ -79,7 +108,7 @@ namespace AssessTracker.Controllers
                 List<DateTaken> kidsDates = _context.DateTaken.Where(x => x.KidId == kid.id).Include(k => k.Kid).Include(a => a.Assessment).Where(p => p.Assessment.Name == "DECA").OrderByDescending(d => d.Date).ToList();
                 if(kidsDates.Count > 0){
                     TimeSpan sinceRecentDeca = target - kidsDates[0].Date;
-                    if(sinceRecentDeca.TotalDays > 170){
+                    if(sinceRecentDeca.TotalDays > 170 && kid.Active == true){
                         kidsDueDates.Add(kidsDates[0]);
                     }
                 }
@@ -94,7 +123,7 @@ namespace AssessTracker.Controllers
                         count += 1;
                     }
                 }
-                if(count == 0){
+                if(count == 0 && kid.Active == true){
                     noDecaKids.Add(kid);
                 }
             }

@@ -16,6 +16,9 @@
             <th>Score</th>
             <th>Progress?</th>
             <th>Comment</th>
+            @if(ViewBag.permission == 9){
+                <th></th>
+            }
         </tr>
         @foreach(var taken in @ViewBag.assessmentsTaken){
             <tr>
@@ -24,6 +27,9 @@
                 <td>@taken.Score</td>
                 <td>@taken.Progress</td>
                 <td>@taken.Comment</td>
+                @if(ViewBag.permission == 9){
+                    <td><a href="/deleteAsstPage/@taken.id">Delete</a></td>
+                }
             </tr>
         }
     </table>

@@ -134,6 +134,7 @@ namespace AssessTracker.Controllers
             ViewBag.years = years;
             ViewBag.months = months;
             ViewBag.assessments = _context.Assessments;
+            ViewBag.permission = HttpContext.Session.GetInt32("Permission");
             HttpContext.Session.SetInt32("kidId", id);
             return View("updateAssessmentPage");
         }
@@ -163,6 +164,7 @@ namespace AssessTracker.Controllers
                 ViewBag.years = years;
                 ViewBag.months = months;
                 ViewBag.assessments = _context.Assessments;
+                ViewBag.permission = HttpContext.Session.GetInt32("Permission");
                 return View("updateAssessmentPage");
             }
             Kid kid = _context.Kids.SingleOrDefault(x => x.id == HttpContext.Session.GetInt32("kidId"));

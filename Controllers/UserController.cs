@@ -26,8 +26,10 @@ namespace AssessTracker.Controllers
             if(HttpContext.Session.GetInt32("Permission") == null){
                 return RedirectToAction("Index", "Home");
             }
-            List<User> allUsers = _context.Users.OrderBy(x => x.LastName).ToList();
+            List<User> allUsers = _context.Users.Where(l => l.id != 1).OrderBy(x => x.LastName).ToList();
             ViewBag.allUsers = allUsers;
+            List<User> zeroUsers = _context.Users.Where(x => x.Permission == 0).OrderBy(l => l.LastName).ToList();
+            ViewBag.zeroUsers = zeroUsers;
             return View("grantAccessPage");
         }
 

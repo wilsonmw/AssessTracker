@@ -1,0 +1,9 @@
+<h3>Are you sure you want to delete this assessment for @ViewBag.assessment.Kid.FirstName @ViewBag.assessment.Kid.LastName:</h3>
+<h4>Assessment Name: @ViewBag.assessment.Assessment.Name</h4>
+<h4>Date: @ViewBag.assessment.Date.ToShortDateString()</h4>
+<h4>Score: @ViewBag.assessment.Score</h4>
+<h4>Progress: @ViewBag.assessment.Progress</h4>
+<h4>Comment: @ViewBag.assessment.Comment</h4>
+
+<a href="/deleteAsst/@ViewBag.assessment.id">Yes, Delete this assessment</a>
+<a href="/updateAssessmentPage/@ViewBag.assessment.Kid.id">No, DO NOT DELETE this assessment</a>

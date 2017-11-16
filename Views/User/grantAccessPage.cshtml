@@ -9,4 +9,13 @@
     <input type="submit" value="Select">
 </form>
 
+<div id="zeroUsers">
+    <h4>New Users who currently have no access:</h4>
+    <ul>
+        @{foreach(var user in @ViewBag.zeroUsers){
+            <li>@user.FirstName @user.LastName</li>
+        }}
+    </ul>
+</div>
+
 <a href="/dashboard">Go Back</a>

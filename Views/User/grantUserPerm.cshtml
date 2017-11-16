@@ -1,8 +1,22 @@
 <h2>Select permission level for this user:</h2>
 
 <h4>@ViewBag.user.FirstName @ViewBag.user.LastName</h4>
-<h4>@ViewBag.user.Email</h4>
-<h4>@ViewBag.user.Organization</h4>
+<h4>Email: @ViewBag.user.Email</h4>
+<h4>Organization: @ViewBag.user.Organization</h4>
+<h4>Current Permission Level:
+    @{if(ViewBag.user.Permission == 1){
+        <h4>View Only</h4>
+    }
+    @if(ViewBag.user.Permission == 0){
+        <h4>No Access</h4>
+    }
+    @if(ViewBag.user.Permission == 5){
+        <h4>Write Access</h4>
+    }
+    @if(ViewBag.user.Permission == 9){
+        <h4>Admin</h4>
+    }}
+</h4>
 
 <form action="givePerm" method="post">
     <input type="hidden" name="id" value="@ViewBag.user.id">
