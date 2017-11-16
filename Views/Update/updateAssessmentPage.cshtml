@@ -1,5 +1,10 @@
 @model AssessTracker.Models.DateTakenViewModel
 
+<div class="dashLogLinks">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
 <h1>@ViewBag.singleKid[0].FirstName @ViewBag.singleKid[0].LastName</h1>
 <h3>@ViewBag.singleKid[0].Birthdate.ToShortDateString()</h3>
 <h3>@ViewBag.years years, @ViewBag.months months old</h3>

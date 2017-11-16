@@ -1,3 +1,8 @@
+<div class="dashLogLinks">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
 @{foreach(var kid in ViewBag.singleKid){
     <h1>@kid.FirstName @kid.LastName</h1>
     <h3>Birthdate: @kid.Birthdate.ToShortDateString()</h3>

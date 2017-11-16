@@ -1,7 +1,15 @@
 /*Write all of your CSS here*/
 
 .navLinks{
-    margin: 1%;
+    margin: 1.5%;
+}
+
+#navbar{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.5%;
+    width: auto;
+    display: inline-block;
 }
 
 #kidTable{

@@ -1,16 +1,18 @@
 <h1>Welcome back, @ViewBag.firstName.</h1>
 
-<a href="/viewDueDecaPage" class="navLinks">View Due DECA Assessments</a>
-<a href="/viewAllKids/sortLast" class="navLinks">View a Child</a>
+<div id="navbar">
+    <a href="/viewDueDecaPage" class="navLinks">View Due DECA Assessments</a>
+    <a href="/viewAllKids/sortLast" class="navLinks">View a Child</a>
 
 
-@if(ViewBag.permission >= 5){
-    <a href="/updateAllKids/sortLast" class="navLinks">Update a Child</a>
-    <a href="/addKidPage" class="navLinks">Add a Child</a>    
-    <a href="/addTeacherPage" class="navLinks">Add a Teacher</a>
-    <a href="/addAssessmentPage" class="navLinks">Add an Assessment</a>
-}
-@if(ViewBag.permission == 9){
-    <a href="/grantAccessPage" class="navLinks">Grant User Access</a>
-}
-<a href="/logout">Logout</a>
+    @if(ViewBag.permission >= 5){
+        <a href="/updateAllKids/sortLast" class="navLinks">Update a Child</a>
+        <a href="/addKidPage" class="navLinks">Add a Child</a>    
+        <a href="/addTeacherPage" class="navLinks">Add a Teacher</a>
+        <a href="/addAssessmentPage" class="navLinks">Add an Assessment</a>
+    }
+    @if(ViewBag.permission == 9){
+        <a href="/grantAccessPage" class="navLinks">Grant User Access</a>
+    }
+    <a href="/logout" class="navLinks">Logout</a>
+</div>

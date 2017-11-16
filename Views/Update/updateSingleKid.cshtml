@@ -1,5 +1,10 @@
 @model AssessTracker.Models.KidViewModel
 
+<div class="dashLogLinks">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
 <h1>Update info for @ViewBag.kid[0].FirstName @ViewBag.kid[0].LastName</h1>
 
 <form asp-controller="Update" asp-action="updateSingleKid" method="post">

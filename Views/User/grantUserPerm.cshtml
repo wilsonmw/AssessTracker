@@ -1,3 +1,8 @@
+<div class="dashLogLinks">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
 <h2>Select permission level for this user:</h2>
 
 <h4>@ViewBag.user.FirstName @ViewBag.user.LastName</h4>
@@ -30,6 +35,8 @@
 <br>
 <h2>Or...</h2>
 <h3><a href="deleteUserPage/@ViewBag.user.id">Delete this user</a></h3>
+<br>
+<a href="/grantAccessPage">Go Back</a>
 <br><br><br>
 <p>View Only: User can view child and assessment information, but cannot make any changes.</p>
 <p>Write Access: User can add children, assessment scores, and dates, but cannot change existing info or delete anything.</p>

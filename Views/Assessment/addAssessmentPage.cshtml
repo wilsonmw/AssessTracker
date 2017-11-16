@@ -1,5 +1,10 @@
 @model AssessTracker.Models.AssessmentViewModel
 
+<div class="dashLogLinks">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
 <h1>Add an Assessment</h1>
 <h3>@ViewBag.addAssessmentError</h3>
 <form asp-controller="Assessment" asp-action="addAssessment" method="post">

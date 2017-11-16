@@ -1,5 +1,10 @@
 @model AssessTracker.Models.TeacherViewModel
 
+<div class="dashLogLinks">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
 <h1>Add a Teacher</h1>
 <h3>@ViewBag.addTeacherError</h3>
 <form asp-controller="Teacher" asp-action="addTeacher" method="post">
@@ -26,4 +31,8 @@
     <input type="submit" value="Add Teacher">
 </form>
 
-<a href="dashboard">Cancel</a>
+@{if(ViewBag.permission == 9){
+    <a href="/deleteTeacherPage">Click Here to Remove a Teacher</a>
+}}
+
+<a href="/dashboard">Cancel</a>

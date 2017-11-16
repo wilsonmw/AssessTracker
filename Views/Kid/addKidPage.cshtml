@@ -1,5 +1,10 @@
 @model AssessTracker.Models.KidViewModel
 
+<div class="dashLogLinks">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
 <h1>Add a Child</h1>
 <h3>@ViewBag.addKidError</h3>
 <form asp-controller="Kid" asp-action="addKid" method="post">
