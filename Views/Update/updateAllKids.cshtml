@@ -7,11 +7,18 @@
         <th><a href="/updateAllKids/sortTeacher">Teacher</a></th>
         <th><a href="/updateAllKids/sortStatus">Status</a></th>
         <th>Update Asst. Info</th>
-        <th>Change Status</th>
+        @{if(ViewBag.permission == 9){
+            <th>Change Status</th>
+        }}
     </tr>
     @{foreach(var kid in ViewBag.allKids){
         <tr>
-            <td><a href="updateSingleKidPage/@kid.id">@kid.FirstName</a></td>
+            @{if(ViewBag.permission == 9){
+                <td><a href="updateSingleKidPage/@kid.id">@kid.FirstName</a></td>
+            }}
+            @if(ViewBag.permission <= 5){
+                <td>@kid.FirstName</td>
+            }
             <td>@kid.LastName</td>
             <td>@kid.Birthdate.ToShortDateString()</td>
             @{TimeSpan age = DateTime.Now - kid.Birthdate;}
@@ -31,11 +38,13 @@
                 <td>Inactive</td>
             }
             <td><a href="updateAssessmentPage/@kid.id">Update</a></td>
-            @if(kid.Active == true){
-                <th><a href="/deactivateKid/@kid.id">Deactivate</a></th>
-            }
-            @if(kid.Active == false){
-                <th><a href="/activateKid/@kid.id">Activate</a></th>
+            @if(ViewBag.permission == 9){
+                @if(kid.Active == true){
+                    <th><a href="/deactivateKid/@kid.id">Deactivate</a></th>
+                }
+                @if(kid.Active == false){
+                    <th><a href="/activateKid/@kid.id">Activate</a></th>
+                }
             }
         }
         </tr>

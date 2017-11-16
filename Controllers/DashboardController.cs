@@ -20,9 +20,19 @@ namespace AssessTracker.Controllers
         [HttpGet]
         [Route("dashboard")]
         public IActionResult dashboard(){
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.permission = HttpContext.Session.GetInt32("Permission");
             ViewBag.firstName = HttpContext.Session.GetString("FirstName");
             return View("dashboard");
+        }
+
+        [HttpGet]
+        [Route("logout")]
+        public IActionResult logout(){
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

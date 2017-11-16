@@ -1,0 +1,12 @@
+<h3>Select User:</h3>
+
+<form action="getUser" method="post">
+    <select name="id">
+        @{foreach (var user in @ViewBag.allUsers){
+            <option value="@user.id">@user.FirstName @user.LastName</option>
+        }}
+    </select>
+    <input type="submit" value="Select">
+</form>
+
+<a href="/dashboard">Go Back</a>

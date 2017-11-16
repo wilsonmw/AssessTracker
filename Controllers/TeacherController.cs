@@ -20,8 +20,11 @@ namespace AssessTracker.Controllers
         [HttpGet]
         [Route("addTeacherPage")]
         public IActionResult addTeacherPage(){
-            if(HttpContext.Session.GetInt32("Permission") != 9){
+            if(HttpContext.Session.GetInt32("Permission") < 5){
                 return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
             }
             return View("addTeacherPage");
         }
@@ -29,6 +32,12 @@ namespace AssessTracker.Controllers
         [HttpPost]
         [Route("addTeacher")]
         public IActionResult addTeacher(TeacherViewModel model){
+            if(HttpContext.Session.GetInt32("Permission") < 5){
+                return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             if(!ModelState.IsValid){
                 ViewBag.addTeacherError = "Please fill out all fields.";
                 return View("addKidPage", model);

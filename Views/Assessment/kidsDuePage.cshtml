@@ -11,7 +11,7 @@
     @{foreach(var kid in @ViewBag.kidsDue){
         <tr>
             <td>@kid.Kid.FirstName @kid.Kid.LastName</td>
-            <td>@kid.Date</td>
+            <td>@kid.Date.ToShortDateString()</td>
             <td>@kid.Score</td>
             <td>@kid.Progress</td>
             <td>@kid.Comment</td>

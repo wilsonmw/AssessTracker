@@ -20,16 +20,22 @@ namespace AssessTracker.Controllers
         [HttpGet]
         [Route("addKidPage")]
         public IActionResult addScreen(){
-            if(HttpContext.Session.GetInt32("Permission") != 9){
+            if(HttpContext.Session.GetInt32("Permission") < 5){
                 return RedirectToAction("dashboard", "Dashboard");
             }
-            ViewBag.teachers = _context.Teachers;
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.teachers = _context.Teachers.OrderBy(l => l.LastName);
             return View("addKidPage");
         }
 
-        // [HttpPost]
+        [HttpPost]
         [Route("addKid")]
         public IActionResult addKid(KidViewModel model){
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             if(!ModelState.IsValid){
                 ViewBag.addKidError = "Please fill out all fields.";
                 ViewBag.teachers = _context.Teachers;
@@ -54,6 +60,9 @@ namespace AssessTracker.Controllers
         [HttpGet]
         [Route("viewAllKids")]
         public IActionResult viewAllKids(){
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             if(HttpContext.Session.GetString("sort") == "sortLast"){
                 ViewBag.allKids = _context.Kids.Include(kid => kid.Teacher).OrderBy(l => l.LastName);
             }
@@ -112,6 +121,9 @@ namespace AssessTracker.Controllers
         [HttpGet]
         [Route("viewSingleKid/{id}")]
         public IActionResult viewSingleKid(int id){
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.singleKid = _context.Kids.Where(kid => kid.id == id).Include(t => t.Teacher).ToArray();
             List<DateTaken> DateTakens = _context.DateTaken.Where(x => x.KidId == id).Include(a => a.Assessment).OrderByDescending(d => d.Date).ToList();
             ViewBag.assessmentsTaken = DateTakens;

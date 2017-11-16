@@ -20,8 +20,11 @@ namespace AssessTracker.Controllers
         [HttpGet]
         [Route("addAssessmentPage")]
         public IActionResult addAssessmentPage(){
-            if(HttpContext.Session.GetInt32("Permission") != 9){
+            if(HttpContext.Session.GetInt32("Permission") < 5){
                 return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
             }
             return View("addAssessmentPage");
         }
@@ -29,6 +32,12 @@ namespace AssessTracker.Controllers
         [HttpPost]
         [Route("addAssessment")]
         public IActionResult addAssessment(AssessmentViewModel model){
+            if(HttpContext.Session.GetInt32("Permission") < 5){
+                return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             if(!ModelState.IsValid){
                 ViewBag.addAssessmentError = "Please fill out all fields.";
                 return View("addAssessmentPage", model);
@@ -47,12 +56,18 @@ namespace AssessTracker.Controllers
         [HttpGet]
         [Route("viewDueDecaPage")]
         public IActionResult viewDueDecaPage (){
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             return View("viewDueDecaPage");
         }
 
         [HttpPost]
         [Route("viewDueDeca")]
         public IActionResult viewDueDeca (int month, int year){
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             DateTime currentTime = DateTime.Now;
             if(year < currentTime.Year){
                 year = currentTime.Year;

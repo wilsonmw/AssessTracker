@@ -1,0 +1,8 @@
+<h1>Are you sure you want to delete this user from the database?</h1>
+
+<h4>@ViewBag.user.FirstName @ViewBag.user.LastName</h4>
+<h4>@ViewBag.user.Email</h4>
+<h4>@ViewBag.user.Organization</h4>
+
+<a href="/deleteUser/@ViewBag.user.id">Yes, delete @ViewBag.user.FirstName from the database</a>
+<a href="/grantAccessPage">No, DO NOT DELETE @ViewBag.user.FirstName</a>

@@ -1,3 +1,5 @@
+@model AssessTracker.Models.RegisterViewModel
+
 @{
     ViewData["Title"] = "Assessment Tracker Login";
 }
@@ -11,12 +13,26 @@
 </form>
 
 <h3>Register</h3>
-<form action="register" method="post">
-    First Name: <input type="text" name="firstName">
-    Last Name: <input type="text" name="lastName">
-    Email Address: <input type="email" name="email">
-    Organization: <input type="text" name="organization">
-    Password: <input type="text" name="password">
-    Confirm Password: <input type="text" name="pwConfirm">
+<h4>@ViewBag.registerError</h4>
+<form asp-controller="Home" asp-action="register" method="post">
+    <span asp-validation-for="FirstName"></span>
+    First Name: <input asp-for="FirstName">
+
+    <span asp-validation-for="LastName"></span>
+    Last Name: <input asp-for="LastName">
+
+    <span asp-validation-for="Email"></span>
+    Email Address: <input asp-for="Email">
+
+    <span asp-validation-for="Organization"></span>
+    Organization: <input asp-for="Organization">
+
+    <span asp-validation-for="Password"></span>
+    Password: <input asp-for="Password">
+
+    <span asp-validation-for="PWConfirm"></span>
+    Confirm Password: <input asp-for="PWConfirm">
+
+    <input type="submit" value="Register">
 </form>
 
