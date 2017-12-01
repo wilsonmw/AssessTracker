@@ -1,8 +1,13 @@
 @model AssessTracker.Models.DateTakenViewModel
 
-<div class="dashLogLinks">
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
+<div class="topLinks">
+    <div class="goBackLinks">
+        <a href="/updateAllKids">Go Back</a>
+    </div>
+    <div class="dashLogLinks">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
 </div>
 
 <h1>@ViewBag.singleKid[0].FirstName @ViewBag.singleKid[0].LastName</h1>
@@ -42,29 +47,28 @@
 }
 <br>
 <h3>Add new assessment for @ViewBag.singleKid[0].FirstName:</h3>
-<form asp-controller="Update" asp-action="updateAssessments" method="post" name="addAsstForm">
+<form asp-controller="Update" asp-action="updateAssessments" method="post" id="addAsstForm">
     Assessment: <select name="Asst">
         @{foreach(var asst in @ViewBag.assessments){
             <option value="@asst.Name">@asst.Name</option>
         }}
-    </select>
+    </select><br>
 
     <span asp-validation-for="Date"></span>
     <label asp-for="Date"></label>
-    <input type="date" name="Date">
+    <input type="date" name="Date"><br>
 
     <span asp-validation-for="Score"></span>
     <label asp-for="Score"></label>
-    <input asp-for="Score">
+    <input asp-for="Score"><br>
 
     Progress: <select name="Progress">
         <option value="N/A">N/A</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
-    </select>
+    </select><br>
 
-    <textarea name="Comment" rows="1" cols="35" placeholder="Comment"></textarea>
+    <textarea name="Comment" rows="1" cols="35" placeholder="Comment"></textarea><br>
     <input type="submit" value="Submit">
 </form>
-<a href="/updateAllKids">Go Back</a>
 

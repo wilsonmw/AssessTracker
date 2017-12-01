@@ -1,26 +1,34 @@
 @model AssessTracker.Models.KidViewModel
 
-<div class="dashLogLinks">
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
+<div class="topLinks">
+    <div class="goBackLinks">
+        <a href="/updateAllKids">Cancel</a>
+    </div>
+    <div class="dashLogLinks">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
 </div>
 
 <h1>Update info for @ViewBag.kid[0].FirstName @ViewBag.kid[0].LastName</h1>
 
-<form asp-controller="Update" asp-action="updateSingleKid" method="post">
+<form asp-controller="Update" asp-action="updateSingleKid" method="post" id="updateSingleForm">
     
     <span asp-validation-for="FirstName"></span>
     <label asp-for="FirstName"></label>
     <input asp-for="FirstName" value="@ViewBag.kid[0].FirstName">
-    
+    <br>
+
     <span asp-validation-for="LastName"></span>
     <label asp-for="LastName"></label>
     <input asp-for="LastName" value="@ViewBag.kid[0].LastName">
-    
+    <br>
+
     <span asp-validation-for="Birthdate"></span>
     <label asp-for="Birthdate"></label>
     <input type="date" name="Birthdate" value="@ViewBag.kid[0].Birthdate.ToShortDateString()">
-    
+    <br>
+
     Teacher: <select name="teacher">
         @{foreach(var teacher in ViewBag.teachers){
             @if(teacher.LastName == @ViewBag.kid[0].Teacher.LastName){
@@ -31,7 +39,10 @@
             }
         }}
         </select>
+        <br>
     <input type="submit" value="Update Child">
 </form>
-<a href="/deleteKidPage/@ViewBag.kid[0].id">Delete This Child From Database</a>
-<a href="/updateAllKids">Cancel</a>
+
+    <a href="/deleteKidPage/@ViewBag.kid[0].id" class="deleteLink">Delete This Child From Database</a>
+
+

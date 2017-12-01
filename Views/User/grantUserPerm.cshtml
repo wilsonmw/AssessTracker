@@ -1,6 +1,12 @@
-<div class="dashLogLinks">
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
+
+<div class="topLinks">
+    <div class="goBackLinks">
+        <a href="/grantAccessPage">Go Back</a>
+    </div>
+    <div class="dashLogLinks">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
 </div>
 
 <h2>Select permission level for this user:</h2>
@@ -8,35 +14,36 @@
 <h4>@ViewBag.user.FirstName @ViewBag.user.LastName</h4>
 <h4>Email: @ViewBag.user.Email</h4>
 <h4>Organization: @ViewBag.user.Organization</h4>
-<h4>Current Permission Level:
-    @{if(ViewBag.user.Permission == 1){
-        <h4>View Only</h4>
-    }
-    @if(ViewBag.user.Permission == 0){
-        <h4>No Access</h4>
-    }
-    @if(ViewBag.user.Permission == 5){
-        <h4>Write Access</h4>
-    }
-    @if(ViewBag.user.Permission == 9){
-        <h4>Admin</h4>
-    }}
-</h4>
+<div id="permText">
+    <h4>Current Permission Level:
+        @{if(ViewBag.user.Permission == 1){
+            <h4 class="permAlert">View Only</h4>
+        }
+        @if(ViewBag.user.Permission == 0){
+            <h4 class="permAlert">No Access</h4>
+        }
+        @if(ViewBag.user.Permission == 5){
+            <h4 class="permAlert">Write Access</h4>
+        }
+        @if(ViewBag.user.Permission == 9){
+            <h4 class="permAlert">Admin</h4>
+        }}
+    </h4>
+</div>
 
-<form action="givePerm" method="post">
+<form action="givePerm" method="post" id="permForm">
     <input type="hidden" name="id" value="@ViewBag.user.id">
-    Permission Level: <select name="perm">
+    Edit Permission Level: <select name="perm">
         <option value=1>View Only</option>
         <option value=5>Write Access</option>
         <option value=9>Admin</option>
-    </select>
+    </select><br>
     <input type="submit" value="Grant Permission">
 </form>
 <br>
 <h2>Or...</h2>
-<h3><a href="deleteUserPage/@ViewBag.user.id">Delete this user</a></h3>
+<h3><a href="deleteUserPage/@ViewBag.user.id" class="deleteLink">Delete this user</a></h3>
 <br>
-<a href="/grantAccessPage">Go Back</a>
 <br><br><br>
 <p>View Only: User can view child and assessment information, but cannot make any changes.</p>
 <p>Write Access: User can add children, assessment scores, and dates, but cannot change existing info or delete anything.</p>

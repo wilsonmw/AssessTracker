@@ -1,50 +1,293 @@
 /*Write all of your CSS here*/
 
+body{
+    background-color: rgb(177, 235, 241);
+
+}
+
+
+/* Links at top of pages */
 .navLinks{
-    margin: 1.5%;
+    margin: 1%;
+    display: inline-block;
 }
 
 #navbar{
     border: 1px solid black;
     border-radius: 10px;
-    padding: 0.5%;
-    width: auto;
-    display: inline-block;
+    padding: 1%;
+    font-size: 1.1em;
+    box-shadow: 2px 2px 2px black;
+    background-color: rgb(221, 220, 220);
 }
 
+.dashLogLinks{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(221, 220, 220);
+    font-size: 1.2em;
+    display: inline-block;
+    padding: 1.5%;
+    box-shadow: 2px 2px 2px black;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 55vw;
+    vertical-align: top;
+}
+.dashLogLinks a{
+    display: block;
+}
+.goBackLinks{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(221, 220, 220);
+    font-size: 1.2em;
+    display: inline-block;
+    vertical-align: top;
+    padding: 1.5%;
+    box-shadow: 2px 2px 2px black;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 2vh;
+}
+.topLinks{
+    margin: auto;
+    vertical-align: top;
+    width: 75vw;
+}
+
+.deleteLink{
+    border: 1px solid black;
+    background-color: rgb(221, 220, 220);
+    padding: 1vw;
+    font-size: 1.2em;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+    box-shadow: 3px 3px 2px black;
+    margin-top: 2vh;
+    text-align: center;
+    width: 27vw;
+}
+
+
+/* Tables!!! */
 #kidTable{
     border-collapse: collapse;
     border: 1px solid black;
     padding: 1%;
-    width: 80%;
+    width: 75vw;
+    margin: auto;
+    box-shadow: 3px 3px 2px black;
 }
 
 #updateKidTable{
     border-collapse: collapse;
     border: 1px solid black;
     padding: 1%;
-    width: 85%;
+    width: 85vw;
+    margin: auto;
+    box-shadow: 3px 3px 2px black;
 }
 
 tr:nth-child(even){
     background: lightgray;
+}
+tr:nth-child(odd){
+    background: rgb(194, 189, 189);
 }
 
 #asstHistoryTable{
     border-collapse: collapse;
     border: 1px solid black;
     padding: 1%;
-    width: 60%;
+    width: 70vw;
+    margin: auto;
+    box-shadow: 3px 3px 2px black;
 }
 
 #kidsDueTable{
     border-collapse: collapse;
     border: 1px solid black;
     padding: 1%;
-    width: 60%;
+    width: 60vw;
+    margin: auto;
+    box-shadow: 3px 3px 2px black;
 }
 th, tr, td{
     border-collapse: collapse;
     border: 1px solid black;
     padding: 1%;
+}
+
+/* Forms!!!!!!!!!!  */
+#viewDueForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+}
+#viewDueForm input{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+input, select, textarea{
+    box-shadow: 3px 3px 4px black;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+#updateSingleForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+}
+
+#addAsstForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+}
+#addKidForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+}
+#addTeacherForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+}
+#addAsstForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+}
+#selectUserForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+}
+#zeroUsers{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+}
+#permForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+}
+#loginForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 1vw;
+}
+#regForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+    margin-left: 1vw;
+    display: inline-block;
+}
+#deleteTeacherForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+}
+#loginBoxes{
+    margin: auto;
+    width: 70vw;
+    text-align: center;
+}
+
+
+/* Headers!!!!!!!!!!!!!  */
+h1, h2, h3, p, h4{
+    text-align: center;
+}
+.permAlert{
+    color:  red;
+}
+#permText{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    width: 30vw;
+    margin: auto;
 }

@@ -79,7 +79,7 @@ namespace AssessTracker.Controllers
                 List<Teacher> allTeachers = _context.Teachers.OrderBy(l => l.LastName).ToList();
                 ViewBag.allTeachers = allTeachers;
                 Teacher thisTeach = _context.Teachers.SingleOrDefault(t => t.id == teacher);
-                ViewBag.teacherError = thisTeach.Prefix + " " + thisTeach.LastName + " cannot be removed at this time because there are still children listed as being in their class. If " + thisTeach.Prefix + " " + thisTeach.LastName + " is no longer on staff, please go through and update the children to reflect the new teacher before removing this teacher.";
+                ViewBag.teacherError = thisTeach.Prefix + " " + thisTeach.LastName + " cannot be removed at this time because there are still children listed as being in his/her class. If " + thisTeach.Prefix + " " + thisTeach.LastName + " is no longer on staff, please go through and update the children to reflect the new teacher before removing this teacher.";
                 return View("deleteTeacherPage");
             }
             Teacher deleteTeach = _context.Teachers.SingleOrDefault(t => t.id == teacher);

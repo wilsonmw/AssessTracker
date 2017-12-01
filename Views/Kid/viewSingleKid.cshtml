@@ -1,6 +1,11 @@
-<div class="dashLogLinks">
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
+<div class="topLinks">
+    <div class="goBackLinks">
+        <a href="/viewAllKids">Go Back</a>
+    </div>
+    <div class="dashLogLinks">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
 </div>
 
 @{foreach(var kid in ViewBag.singleKid){
@@ -31,4 +36,4 @@
 @{if(ViewBag.assessmentsTaken.Count == 0){
     <p>No assessments taken yet.</p>
 }}
-<a href="/viewAllKids">Go Back</a>
+

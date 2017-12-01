@@ -3,36 +3,38 @@
 @{
     ViewData["Title"] = "Assessment Tracker Login";
 }
-<h1>Welcome to the Assessment Tracker. Please log in below. If you do not have a login, please register.</h1>
-<h3>Login:</h3>
-@ViewBag.LoginError
-<form action="login" method = "post">
-    Email:<input type="text" name="email">
-    Password:<input type="text" name="password">
-    <input type="submit" value="Log In">
-</form>
+<h3>Welcome to the Assessment Tracker. Please log in below. If you do not have a login, please register.</h3>
+<div id="loginBoxes">
+    <form action="login" method = "post" id="loginForm">
+    @ViewBag.LoginError
+    <h3>Login</h3>
+        Email:<input type="text" name="email"><br>
+        Password:<input type="text" name="password"><br>
+        <input type="submit" value="Log In">
+    </form>
 
-<h3>Register</h3>
-<h4>@ViewBag.registerError</h4>
-<form asp-controller="Home" asp-action="register" method="post">
-    <span asp-validation-for="FirstName"></span>
-    First Name: <input asp-for="FirstName">
+    <form asp-controller="Home" asp-action="register" method="post" id="regForm">
+    <h4>@ViewBag.registerError</h4>
+    <h3>Register</h3>
+        <span asp-validation-for="FirstName"></span>
+        First Name: <input asp-for="FirstName"><br>
 
-    <span asp-validation-for="LastName"></span>
-    Last Name: <input asp-for="LastName">
+        <span asp-validation-for="LastName"></span>
+        Last Name: <input asp-for="LastName"><br>
 
-    <span asp-validation-for="Email"></span>
-    Email Address: <input asp-for="Email">
+        <span asp-validation-for="Email"></span>
+        Email: <input asp-for="Email"><br>
 
-    <span asp-validation-for="Organization"></span>
-    Organization: <input asp-for="Organization">
+        <span asp-validation-for="Organization"></span>
+        Organization: <input asp-for="Organization"><br>
 
-    <span asp-validation-for="Password"></span>
-    Password: <input asp-for="Password">
+        <span asp-validation-for="Password"></span>
+        Password: <input asp-for="Password"><br>
 
-    <span asp-validation-for="PWConfirm"></span>
-    Confirm Password: <input asp-for="PWConfirm">
+        <span asp-validation-for="PWConfirm"></span>
+        Confirm PW: <input asp-for="PWConfirm"><br>
 
-    <input type="submit" value="Register">
-</form>
+        <input type="submit" value="Register">
+    </form>
+</div>
 

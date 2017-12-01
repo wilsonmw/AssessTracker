@@ -1,16 +1,22 @@
-<div class="dashLogLinks">
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
+
+<div class="topLinks">
+    <div class="goBackLinks">
+        <a href="/dashboard">Go Back</a>
+    </div>
+    <div class="dashLogLinks">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
 </div>
 
 <h3>Select User:</h3>
 
-<form action="getUser" method="post">
+<form action="getUser" method="post" id="selectUserForm">
     <select name="id">
         @{foreach (var user in @ViewBag.allUsers){
             <option value="@user.id">@user.FirstName @user.LastName</option>
         }}
-    </select>
+    </select><br>
     <input type="submit" value="Select">
 </form>
 
@@ -22,5 +28,3 @@
         }}
     </ul>
 </div>
-
-<a href="/dashboard">Go Back</a>

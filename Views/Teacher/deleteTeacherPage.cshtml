@@ -1,10 +1,16 @@
-<div class="dashLogLinks">
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
+
+<div class="topLinks">
+    <div class="goBackLinks">
+        <a href="/addTeacherPage">Cancel</a>
+    </div>
+    <div class="dashLogLinks">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
 </div>
 
 <h3>Select the Teacher you would like to remove. (A Teacher may not be removed if they are still listed as the teacher for any child.)</h3>
-<form action="deleteTeacher" method="post">
+<form action="deleteTeacher" method="post" id="deleteTeacherForm">
     <select name="teacher">
         @{foreach(var teacher in @ViewBag.allTeachers){
             <option value="@teacher.id">@teacher.Prefix @teacher.LastName</option>
@@ -13,5 +19,3 @@
         <input type="submit" value="Remove Teacher">
 </form>
 @ViewBag.teacherError
-
-<a href="/addTeacherPage">Cancel</a>
