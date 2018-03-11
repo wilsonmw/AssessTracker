@@ -31,11 +31,11 @@
 
     Teacher: <select name="teacher">
         @{foreach(var teacher in ViewBag.teachers){
-            @if(teacher.LastName == @ViewBag.kid[0].Teacher.LastName){
-                <option value="@teacher.LastName" selected="selected">@teacher.Prefix @teacher.LastName</option>
+            @if(teacher.FirstName == @ViewBag.kid[0].Teacher.FirstName){
+                <option value="@teacher.FirstName" selected="selected">@teacher.Prefix @teacher.FirstName</option>
             }
-            @if(teacher.LastName != @ViewBag.kid[0].Teacher.LastName){
-            <option value="@teacher.LastName">@teacher.Prefix @teacher.LastName</option>
+            @if(teacher.FirstName != @ViewBag.kid[0].Teacher.FirstName){
+            <option value="@teacher.FirstName">@teacher.Prefix @teacher.FirstName</option>
             }
         }}
         </select>

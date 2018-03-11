@@ -28,7 +28,7 @@
     
     Teacher: <select name="teacher">
         @{foreach(var teacher in ViewBag.teachers){
-            <option value="@teacher.LastName">@teacher.Prefix @teacher.LastName</option>
+            <option value="@teacher.LastName">@teacher.Prefix @teacher.FirstName</option>
         }}
         </select>
     <input type="submit" value="Add Child">

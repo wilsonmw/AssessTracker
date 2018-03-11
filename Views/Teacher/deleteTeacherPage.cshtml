@@ -13,7 +13,7 @@
 <form action="deleteTeacher" method="post" id="deleteTeacherForm">
     <select name="teacher">
         @{foreach(var teacher in @ViewBag.allTeachers){
-            <option value="@teacher.id">@teacher.Prefix @teacher.LastName</option>
+            <option value="@teacher.id">@teacher.Prefix @teacher.FirstName</option>
         }}
         </select>
         <input type="submit" value="Remove Teacher">

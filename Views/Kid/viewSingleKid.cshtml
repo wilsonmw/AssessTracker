@@ -11,7 +11,7 @@
 @{foreach(var kid in ViewBag.singleKid){
     <h1>@kid.FirstName @kid.LastName</h1>
     <h3>Birthdate: @kid.Birthdate.ToShortDateString()</h3>
-    <h3>Teacher: @kid.Teacher.Prefix @kid.Teacher.LastName</h3>
+    <h3>Teacher: @kid.Teacher.Prefix @kid.Teacher.FirstName</h3>
 }}
 @{if(ViewBag.assessmentsTaken.Count > 0){
     <table id="asstHistoryTable">
