@@ -164,6 +164,18 @@ input, select, textarea{
     box-shadow: 3px 3px 2px black;
     margin-bottom: 5vh;
 }
+#editAsstForm{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+}
+
 #addKidForm{
     border: 1px solid black;
     border-radius: 10px;
@@ -186,7 +198,18 @@ input, select, textarea{
     box-shadow: 3px 3px 2px black;
     margin-bottom: 5vh;
 }
-#addAsstForm{
+#editTeacherForm1{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
+    width: 25vw;
+    padding: 2vw;
+    text-align: right;
+    background: lightgray;
+    box-shadow: 3px 3px 2px black;
+    margin-bottom: 5vh;
+}
+#editTeacherForm2{
     border: 1px solid black;
     border-radius: 10px;
     margin: auto;

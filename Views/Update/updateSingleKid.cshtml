@@ -26,7 +26,7 @@
 
     <span asp-validation-for="Birthdate"></span>
     <label asp-for="Birthdate"></label>
-    <input type="date" name="Birthdate" value="@ViewBag.kid[0].Birthdate.ToShortDateString()">
+    <input type="date" name="Birthdate" value="@ViewBag.dateDisplay">
     <br>
 
     Teacher: <select name="teacher">
@@ -35,7 +35,7 @@
                 <option value="@teacher.FirstName" selected="selected">@teacher.Prefix @teacher.FirstName</option>
             }
             @if(teacher.FirstName != @ViewBag.kid[0].Teacher.FirstName){
-            <option value="@teacher.FirstName">@teacher.Prefix @teacher.FirstName</option>
+            <option value="@teacher.LastName">@teacher.Prefix @teacher.FirstName</option>
             }
         }}
         </select>

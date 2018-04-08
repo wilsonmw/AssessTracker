@@ -1,0 +1,23 @@
+@model AssessTracker.Models.TeacherViewModel
+
+<div class="topLinks">
+    <div class="goBackLinks">
+        <a href="/addTeacherPage">Cancel</a>
+    </div>
+
+    <div class="dashLogLinks">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<h3>Select the teacher you would like to edit</h3>
+
+<form asp-action="editTeacherPage2" asp-controller="Teacher" method="GET" id="editTeacherForm1">
+    <select name="teacherId">
+        @{foreach(var teacher in @ViewBag.teachers){
+            <option value=@teacher.id>@teacher.Prefix @teacher.FirstName @teacher.LastName</option>
+        }}
+    </select>
+    <input type="submit" value="Select">
+</form>

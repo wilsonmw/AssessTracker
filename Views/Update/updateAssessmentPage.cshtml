@@ -28,6 +28,7 @@
             <th>Comment</th>
             @if(ViewBag.permission == 9){
                 <th></th>
+                <th></th>
             }
         </tr>
         @foreach(var taken in @ViewBag.assessmentsTaken){
@@ -39,6 +40,7 @@
                 <td>@taken.Comment</td>
                 @if(ViewBag.permission == 9){
                     <td><a href="/deleteAsstPage/@taken.id">Delete</a></td>
+                    <td><a href="/editAsstPage/@taken.id">Edit</a></td>
                 }
             </tr>
         }
@@ -68,7 +70,7 @@
         <option value="No">No</option>
     </select><br>
 
-    <textarea name="Comment" rows="1" cols="35" placeholder="Comment"></textarea><br>
+    <textarea name="Comment" rows="4" cols="35" placeholder="Comment"></textarea><br>
     <input type="submit" value="Submit">
 </form>
 

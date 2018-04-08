@@ -1,0 +1,54 @@
+@model AssessTracker.Models.DateTakenViewModel
+<div class="topLinks">
+    <div class="goBackLinks">
+        <a href="/updateAssessmentPage/@ViewBag.assessment.KidId">Cancel</a>
+    </div>
+    <div class="dashLogLinks">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<h3>Edit this assessment for @ViewBag.assessment.Kid.FirstName</h3>
+<form asp-controller="Update" asp-action="editAssessment/@ViewBag.assessment.id" method="post" id="editAsstForm">
+    Assessment: <select name="Asst">
+        @{foreach(var asst in @ViewBag.allAssts){
+            @if(@asst.Name == @ViewBag.assessment.Assessment.Name){
+                <option value="@asst.Name" selected="selected">@asst.Name</option>
+            }
+            @if(@asst.Name != @ViewBag.assessment.Assessment.Name){
+                <option value="@asst.Name">@asst.Name</option>
+            }
+        }}
+    </select><br>
+
+    <span asp-validation-for="Date"></span>
+    <label asp-for="Date"></label>
+    <input type="date" name="Date" value="@ViewBag.dateDisplay"><br>
+
+    <span asp-validation-for="Score"></span>
+    <label asp-for="Score"></label>
+    <input asp-for="Score" value="@ViewBag.assessment.Score"><br>
+
+    Progress: <select name="Progress">
+        @if(@ViewBag.assessment.Progress == "N/A"){
+            <option value="N/A" selected="selected">N/A</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        }
+        @if(@ViewBag.assessment.Progress == "Yes"){
+            <option value="N/A">N/A</option>
+            <option value="Yes" selected="selected">Yes</option>
+            <option value="No">No</option>
+        }
+        @if(@ViewBag.assessment.Progress == "No"){
+            <option value="N/A">N/A</option>
+            <option value="Yes">Yes</option>
+            <option value="No" selected="selected">No</option>
+        }
+    </select><br>
+
+    <textarea name="Comment" rows="4" cols="35">@ViewBag.assessment.Comment</textarea><br>
+
+    <input type="submit" value="Submit">
+</form>

@@ -60,6 +60,12 @@ namespace AssessTracker.Controllers
         [HttpGet]
         [Route("deleteTeacherPage")]
         public IActionResult deleteTeacherPage(){
+            if(HttpContext.Session.GetInt32("Permission") < 9){
+                return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             List<Teacher> allTeachers = _context.Teachers.OrderBy(l => l.LastName).ToList();
             ViewBag.allTeachers = allTeachers;
             return View("deleteTeacherPage");
@@ -68,6 +74,12 @@ namespace AssessTracker.Controllers
         [HttpPost]
         [Route("deleteTeacher")]
         public IActionResult deleteTeacher(int teacher){
+            if(HttpContext.Session.GetInt32("Permission") < 9){
+                return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
             List<Kid> allKids = _context.Kids.Include(t => t.Teacher).ToList();
             int count = 0;
             foreach (var kid in allKids){
@@ -86,6 +98,53 @@ namespace AssessTracker.Controllers
             _context.Teachers.Remove(deleteTeach);
             _context.SaveChanges();
             return RedirectToAction("addTeacherPage");
+        }
+
+        [HttpGet]
+        [Route("editTeacherPage")]
+        public IActionResult editTeacherPage(){
+            if(HttpContext.Session.GetInt32("Permission") < 9){
+                return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.teachers = _context.Teachers;
+            return View("editTeacher");
+        }
+
+        [HttpGet]
+        [Route("editTeacherPage2")]
+        public IActionResult editTeacherPage2(int teacherId){
+            if(HttpContext.Session.GetInt32("Permission") < 9){
+                return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
+            ViewBag.teacher = _context.Teachers.SingleOrDefault(t => t.id == teacherId); 
+            return View("editTeacherPage2");
+        }
+
+        [HttpPost]
+        [Route("editTeacher")]
+        public IActionResult editTeacher(int teacherId, TeacherViewModel model){
+            if(HttpContext.Session.GetInt32("Permission") < 9){
+                return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
+            Teacher teachToEdit = _context.Teachers.SingleOrDefault(t => t.id == teacherId);
+            if(!ModelState.IsValid){
+                return RedirectToAction("editTeacherPage2", new{id = teacherId});
+            }
+            teachToEdit.Prefix = model.Prefix;
+            teachToEdit.FirstName = model.FirstName;
+            teachToEdit.LastName = model.LastName;
+            teachToEdit.GradeLevel = model.GradeLevel;
+            _context.SaveChanges();
+            return RedirectToAction("editTeacherPage");
         }
     }
 } 

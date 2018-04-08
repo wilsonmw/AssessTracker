@@ -66,6 +66,7 @@ namespace AssessTracker.Controllers
             ViewBag.assessment = curAsst[0];
             return View("deleteAsstConfirm");
         }
+        
 
         [HttpGet]
         [Route("deleteAsst/{id}")]

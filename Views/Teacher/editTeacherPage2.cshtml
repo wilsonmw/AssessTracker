@@ -1,0 +1,59 @@
+@model AssessTracker.Models.TeacherViewModel
+
+<div class="topLinks">
+    <div class="goBackLinks">
+        <a href="/editTeacherPage">Cancel</a>
+    </div>
+
+    <div class="dashLogLinks">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<h3>Edit this teacher's information</h3><br>
+
+<form asp-controller="Teacher" asp-action="editTeacher" method="POST" id="editTeacherForm2">
+    Prefix: <select name="Prefix">
+        @if(@ViewBag.teacher.Prefix == "Mrs"){
+            <option value="Mrs" selected="selected">Mrs</option>
+            <option value="Ms">Ms</option>
+            <option value="Miss">Miss</option>
+            <option value="Mr">Mr</option>
+        }
+        @if(@ViewBag.teacher.Prefix == "Ms"){
+            <option value="Mrs">Mrs</option>
+            <option value="Ms" selected="selected">Ms</option>
+            <option value="Miss">Miss</option>
+            <option value="Mr">Mr</option>
+        }
+        @if(@ViewBag.teacher.Prefix == "Miss"){
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+            <option value="Miss" selected="selected">Miss</option>
+            <option value="Mr">Mr</option>
+        }
+        @if(@ViewBag.teacher.Prefix == "Mr"){
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+            <option value="Miss">Miss</option>
+            <option value="Mr" selected="selected">Mr</option>
+        }
+    </select><br>
+
+    <span asp-validation-for="FirstName"></span>
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" value="@ViewBag.teacher.FirstName"><br>
+    
+    <span asp-validation-for="LastName"></span>
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" value="@ViewBag.teacher.LastName"><br>
+    
+    <span asp-validation-for="GradeLevel"></span>
+    <label asp-for="GradeLevel"></label>
+    <input asp-for="GradeLevel" value="@ViewBag.teacher.GradeLevel"><br>
+
+    <input type="hidden" name="teacherId" value="@ViewBag.teacher.id">
+    
+    <input type="submit" value="Edit Teacher">
+</form>

@@ -192,9 +192,22 @@ namespace AssessTracker.Controllers
             if(HttpContext.Session.GetInt32("Permission") == null){
                 return RedirectToAction("Index", "Home");
             }
+            string monthDisplay;
+            string dayDisplay;
             List<Kid> kid = _context.Kids.Where(x => x.id == id).Include(k => k.Teacher).ToList();
             ViewBag.kid = kid;
             ViewBag.teachers = _context.Teachers;
+            if(kid[0].Birthdate.Month < 10){
+                monthDisplay = "0"+kid[0].Birthdate.Month;
+            } else {
+                monthDisplay = kid[0].Birthdate.Month.ToString();
+            }
+            if(kid[0].Birthdate.Day < 10){
+                dayDisplay = "0"+kid[0].Birthdate.Day;
+            } else {
+                dayDisplay = kid[0].Birthdate.Day.ToString();
+            }
+            ViewBag.dateDisplay = kid[0].Birthdate.Year + "-"+ monthDisplay + "-" + dayDisplay;
             return View("updateSingleKid");
         }
 
@@ -221,6 +234,58 @@ namespace AssessTracker.Controllers
             updatedKid.Teacher = updatedTeacher;
             _context.SaveChanges();
             return RedirectToAction("updateAllKids");
+        }
+
+        [HttpGet]
+        [Route("editAsstPage/{id}")]
+        public IActionResult editAsstPage(int id){
+            if(HttpContext.Session.GetInt32("Permission") < 9){
+                return RedirectToAction("updateAllKids");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
+            string monthDisplay;
+            string dayDisplay;
+            List<DateTaken> curAsst = _context.DateTaken.Where(x => x.id == id).Include(k => k.Kid).Include(a => a.Assessment).ToList();
+            ViewBag.assessment = curAsst[0];
+            List<Assessment> allAssts = _context.Assessments.ToList();
+            ViewBag.allAssts = allAssts;
+            if(curAsst[0].Date.Month < 10){
+                monthDisplay = "0"+curAsst[0].Date.Month;
+            } else {
+                monthDisplay = curAsst[0].Date.Month.ToString();
+            }
+            if(curAsst[0].Date.Day < 10){
+                dayDisplay = "0"+curAsst[0].Date.Day;
+            } else {
+                dayDisplay = curAsst[0].Date.Day.ToString();
+            }
+            ViewBag.dateDisplay = curAsst[0].Date.Year + "-"+ monthDisplay + "-" + dayDisplay;
+            return View("editAsstPage");
+        }
+
+        [HttpPost]
+        [Route("editAsstPage/{id}")]
+        public IActionResult editAssessment(int id, DateTakenViewModel model){
+            if(HttpContext.Session.GetInt32("Permission") < 9){
+                return RedirectToAction("dashboard", "Dashboard");
+            }
+            if(HttpContext.Session.GetInt32("Permission") == null){
+                return RedirectToAction("Index", "Home");
+            }
+            if(!ModelState.IsValid){
+                return RedirectToAction("editAsstPage", "Update", new {id = id});
+            }
+            Assessment assessment = _context.Assessments.SingleOrDefault(a => a.Name == model.Asst);
+            List<DateTaken> oneToUpdate = _context.DateTaken.Where(i => i.id == id).Include(a => a.Assessment).Include(k => k.Kid).ToList();
+            oneToUpdate[0].AssessmentId = assessment.id;
+            oneToUpdate[0].Date = model.Date;
+            oneToUpdate[0].Score = model.Score;
+            oneToUpdate[0].Progress = model.Progress;
+            oneToUpdate[0].Comment = model.Comment;
+            _context.SaveChanges();
+            return RedirectToAction("updateAssessmentPage", "Update", new{id = oneToUpdate[0].KidId});
         }
 
         [HttpGet]
